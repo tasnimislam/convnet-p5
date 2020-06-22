@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>convnet_exp</title>
+
+        <script language="javascript" type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script language="javascript" type="text/javascript" src="js/convnet.js"></script>
+        <script language="javascript" type="text/javascript" src="js/p5.js"></script>
+
+        <link rel="stylesheet" href="css/bulma.css">
+
+        <style>
+            html {
+                height: 100%;
+                background-color: #181B22;
+            }
+    
+            body {
+                padding: 0;
+                margin: 0;
+                color: #fff;
+            }
+    
+            #dvMain,
+            #dvMenuWrapper {
+                width: 766px;
+                height: 516px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 20px;
+                border: 2px solid #080B11;
+                border-radius: 6px;
+                padding: 6px;
+            }
+    
+            #dvMenuWrapper {
+                height: auto;
+            }
+    
+            .sLabel,
+            .sWrapper {
+                height: 36px;
+                line-height: 36px;
+                margin-right: 5px;
+                float: left;
+            }
+    
+            .sWrapper input {
+                margin: 0;
+                padding: 0;
+                height: 36px;
+                display: block;
+            }
+    
+            .sLabel label {
+                margin: 0;
+                padding: 0;
+                height: 36px;
+            }
+    
+            .sLabel input {
+                margin: 0;
+                padding: 0;
+                height: 36px;
+                vertical-align: middle;
+            }
+    
+            .tr {
+                overflow: auto;
+                background-color: #080B11;
+                border: 1px solid #080B11;
+                border-radius: 6px;
+                padding: 4px 0;
+                margin: 10px 0;
+            }
+    
+            .cell {
+                padding: 4px;
+                float: left;
+            }
+    
+            .button {
+                height: 36px;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            function setup(){
+                createCanvas(400, 400); 
+                var layer_defs = [];
+                layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
+                var net = new convnetjs.Net();
+                net.makeLayers(layer_defs);
+                var x = new convnetjs.Vol([0.5, -1.3]);
+                var probability_volume = net.forward(x);
+                console.log('probability that x is class 0: ' + probability_volume.w[0]);
+
+
+            }
+
+            function draw(){
+                background(90);
+                start();
+
+                
+
+
+            }
+
+            
+        </script>
+
+    </body>
+    
+
+</html>
